@@ -1,0 +1,27 @@
+/* Product details image */
+.product-image-box {
+    width: 100%;
+    max-width: 300px;         
+    height: 350px;
+    margin: auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.product-image-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;      
+}
+.product-image-box img {
+    transition: transform 0.3s ease;
+}
+
+.product-image-box img:hover {
+    transform: scale(1.08);
+}
+

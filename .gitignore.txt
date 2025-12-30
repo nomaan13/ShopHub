@@ -1,0 +1,12 @@
+#  STS
+.metadata/
+.project
+.classpath
+.settings/
+
+# Maven
+target/
+
+# OS
+Thumbs.db
+.DS_Store
