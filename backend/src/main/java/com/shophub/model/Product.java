@@ -1,92 +1,119 @@
-
-
 package com.shophub.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "products")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    
     @Column(nullable = false)
     private String name;
-
-    @Column(length = 500)
+    
+    @Column(length = 1000)
     private String description;
-
+    
     @Column(nullable = false)
-    private double price;
-
-    private int stock;
-
+    private Double price;
+    
+    @Column(nullable = false)
+    private Integer stock;
+    
     private String imageUrl;
-
-   
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "category_id")
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
-
-    //  Constructors
-    public Product() {}
-
-    //  Getters & Setters
-    public Long getId() {
-        return id;
+    
+    private Double rating;
+    
+    @Column(name = "created_at", updatable = false)
+    private Long createdAt;
+    
+    @PrePersist
+    protected void onCreate() {
+        createdAt = System.currentTimeMillis();
+        
+        
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public double getPrice() {
-        return price;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+	public Double getPrice() {
+		return price;
+	}
 
-    public int getStock() {
-        return stock;
-    }
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
+	public Integer getStock() {
+		return stock;
+	}
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
+	public String getImageUrl() {
+		return imageUrl;
+	}
 
-    public Category getCategory() {
-        return category;
-    }
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Double getRating() {
+		return rating;
+	}
+
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
+
+	public Long getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Long createdAt) {
+		this.createdAt = createdAt;
+	}
 }

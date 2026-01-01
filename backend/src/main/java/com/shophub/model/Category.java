@@ -1,5 +1,6 @@
 package com.shophub.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,11 +10,29 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "categories")
 public class Category {
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @Column(unique = true, nullable = false)
+    private String name;
+    
+    private String description;
+    
+    
 
-    public Long getId() {
+	public Category() {
+		super();
+	}
+
+	public Category(Long id, String name, String description) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+	}
+
+	public Long getId() {
 		return id;
 	}
 
@@ -29,6 +48,12 @@ public class Category {
 		this.name = name;
 	}
 
-	private String name;
+	public String getDescription() {
+		return description;
+	}
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 }
