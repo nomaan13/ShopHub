@@ -120,7 +120,7 @@ function renderProducts(products) {
                     <!-- Product Image -->
                     <div style="height: 200px; overflow: hidden; background: #f5f5f5;">
                         <img 
-                            src="${product.imageUrl || '/assets/images/placeholder.jpg'}" 
+                            src="${product.imageUrl || '/assets/images/iphone'}" 
                             alt="${product.name}"
                             class="card-img-top"
                             style="height: 100%; object-fit: contain; padding: 10px;"
