@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Product Details</title>
-
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -16,40 +16,31 @@
     <!-- Navbar -->
     <div id="navbar"></div>
 
-    
     <!-- Product Details -->
-        <div class="container my-5">
-            <div class="row" id="product-details">
-                <!-- Product details will be loaded here via JS -->
-                <div class="col-md-5">
+    <div class="container my-5">
+        <div class="row" id="product-details">
+            <!-- Placeholder product image (will be overwritten by JS render) -->
+            <div class="col-md-5">
                 <div class="product-image-box">
                     <img id="product-image"
-                        src="/assets/images/camera.jpg"
-                        alt="Product">
-                </div>
-                </div>
-
-                <div class="col-md-7">
-                    <h3 id="product-name"></h3>
-                    <p class="text-muted fw-bold" id="product-price"></p>
-                    <p id="product-description"></p>
-
-                    <div class="d-flex gap-3">
-                        <a href="../cart/cart.html" class="btn btn-primary">Add to Cart</a>
-                        <a href="../cart/wishlist.html" class="btn btn-outline-secondary">Add to Wishlist</a>
-                    </div>
+                         src="/assets/images/placeholder.jpg"
+                         alt="Product" class="img-fluid">
                 </div>
             </div>
-        </div>
 
+            <div class="col-md-7">
+                <h3 id="product-name"></h3>
+                <p class="text-muted fw-bold" id="product-price"></p>
+                <p id="product-description"></p>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <div id="footer"></div>
 
     <script src="../../js/main.js"></script>
     <script src="../../js/product_details.js"></script>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
 </body>
