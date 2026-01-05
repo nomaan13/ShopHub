@@ -33,12 +33,12 @@
     object-fit: cover;
 }
 
-/* Caption styling like Amazon */
+/* Caption styling */
 .carousel-caption {
-  background: rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.25); 
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 15px 20px;
 }
 
 .carousel-caption h1 {
