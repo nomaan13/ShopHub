@@ -1,6 +1,13 @@
 const params = new URLSearchParams(window.location.search);
 const category = params.get("category");
 
+const productContainer = document.getElementById("product_list");
+
+
+console.log("product_list.js loaded");
+console.log(document.getElementById("product_list"));
+
+
 let currentPage = 0;
 const pageSize = 8;
 
@@ -24,7 +31,9 @@ function loadProducts(page = 0) {
 }
 
 function renderProducts(products) {
-  const container = document.getElementById("product-list");
+  
+  const container = document.getElementById("product_list");
+
   container.innerHTML = "";
 
   if (products.length === 0) {
