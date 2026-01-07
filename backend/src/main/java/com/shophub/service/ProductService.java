@@ -1,15 +1,32 @@
 package com.shophub.service;
 
-import com.shophub.model.Product;
 import java.util.List;
-import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+
+import com.shophub.model.Product;
 
 public interface ProductService {
-    List<Product> getAllProducts();
-    Optional<Product> getProductById(Long id);
-    List<Product> getProductsByCategory(String categoryName);
+
+    // Pagination
+    Page<Product> getAllProducts(int page, int size);
+
+    Page<Product> getProductsByCategory(String categoryName, int page, int size);
+
+    // Single product
+    Product getProductById(Long id);
+
+    // Create
     Product saveProduct(Product product);
+
+    // Update
     Product updateProduct(Long id, Product product);
+
+    // Delete
     void deleteProduct(Long id);
+
+    // Search
     List<Product> searchProducts(String keyword);
+    
+    
 }

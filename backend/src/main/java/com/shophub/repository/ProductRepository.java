@@ -1,12 +1,18 @@
 package com.shophub.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-import com.shophub.model.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
-@Repository
+
+import com.shophub.model.Product;
+
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<Product> findByCategory_Name(String categoryName);
-    List<Product> findByNameContainingIgnoreCase(String name);
+
+    Page<Product> findByCategory_Name(String categoryName, Pageable pageable);
+    
+    
+
+    List<Product> findByNameContainingIgnoreCase(String keyword);
 }
