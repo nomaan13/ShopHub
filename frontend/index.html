@@ -295,6 +295,44 @@
 <!-- Footer -->
 <div id="footer"></div>
 
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const authNav = document.getElementById("authNav");
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+        authNav.innerHTML = `
+            <a class="nav-link" href="#" id="logoutBtn">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+        `;
+
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            localStorage.clear();
+            window.location.href = "/pages/auth/login.html";
+        });
+
+    } else {
+        authNav.innerHTML = `
+            <a class="nav-link" href="/pages/auth/login.html">
+                <i class="fa-solid fa-user"></i> Login
+            </a>
+        `;
+    }
+});
+</script>
+
+
+
+
+
+
+</body>
+
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="js/main.js"></script>
 </body>

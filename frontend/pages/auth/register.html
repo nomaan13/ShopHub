@@ -8,267 +8,135 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
     <style>
         body {
             background: #f9f9fb;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
+            font-family: 'Segoe UI', sans-serif;
         }
-
         .card {
             border-radius: 20px;
-            border: none;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            background: #ffffff;
         }
-
-        .card-body h4 {
-            font-weight: 600;
-            color: #4a4a4a;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-control {
-            border-radius: 10px;
-            border: 1px solid #ced4da;
-            padding: 10px;
-            transition: all 0.3s;
-        }
-
-        .form-control:focus {
-            border-color: #7abaff;
-            box-shadow: 0 0 8px rgba(122, 186, 255, 0.3);
-        }
-
-        .btn-light-theme {
+        .btn-theme {
             background: linear-gradient(90deg, #6cc1ff, #3a8dff);
             color: #fff;
-            font-weight: 600;
             border-radius: 50px;
-            padding: 12px;
-            border: none;
-            transition: all 0.3s;
+            font-weight: 600;
         }
-
-        .btn-light-theme:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(58, 141, 255, 0.4);
+        .btn-theme:hover {
+            box-shadow: 0 6px 20px rgba(58,141,255,0.4);
         }
-
-        /* Tabs Styling */
-        .nav-tabs {
-            border-bottom: none;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
         .nav-tabs .nav-link {
-            border: none;
             border-radius: 50px;
-            color: #3a8dff;
-            font-weight: 500;
-            padding: 10px 30px;
             margin: 0 5px;
-            background: #e0f0ff;
-            transition: all 0.3s;
-        }
-
-        .nav-tabs .nav-link:hover {
-            background: linear-gradient(90deg, #6cc1ff, #3a8dff);
-            color: #fff;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(58,141,255,0.3);
-        }
-
-        .nav-tabs .nav-link.active {
-            background: linear-gradient(90deg, #6cc1ff, #3a8dff);
-            color: #fff;
-            box-shadow: 0 4px 15px rgba(58,141,255,0.4);
-        }
-
-        .text-center a {
-            color: #3a8dff;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .text-center a:hover {
-            text-decoration: underline;
-        }
-
-        hr {
-            border-top: 1px solid #e0e0e0;
         }
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<div id="navbar"></div>
-
-<!-- Register Form -->
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card p-4">
-                <div class="card-body">
+                <h4 class="text-center mb-4">Register</h4>
 
-                    <!-- Tabs -->
-                    <ul class="nav nav-tabs mb-4" id="registrationTabs" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="user-tab" data-bs-toggle="tab" data-bs-target="#userForm" type="button" role="tab">
-                                User Registration
+                <!-- Tabs -->
+                <ul class="nav nav-tabs justify-content-center mb-4">
+                    <li class="nav-item">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#userTab">
+                            User
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#adminTab">
+                            Admin
+                        </button>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+
+                    <!-- USER -->
+                    <div class="tab-pane fade show active" id="userTab">
+                        <form onsubmit="registerUser(event, 'user')">                            
+                            <input class="form-control mb-2" name="firstName" placeholder="First Name" required>
+                            <input class="form-control mb-2" name="lastName" placeholder="Last Name" required>
+                            <input class="form-control mb-2" type="email" name="email" placeholder="Email" required>
+                            <input class="form-control mb-2" type="password" name="password" placeholder="Password" required>
+                            <input class="form-control mb-3" type="password" name="confirmPassword" placeholder="Confirm Password" required>
+
+                            <button class="btn btn-theme w-100">
+                                <i class="fa fa-user-plus me-2"></i> Register
                             </button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="admin-tab" data-bs-toggle="tab" data-bs-target="#adminForm" type="button" role="tab">
-                                Admin Registration
-                            </button>
-                        </li>
-                    </ul>
-
-                    <!-- Tab Contents -->
-                    <div class="tab-content" id="registrationTabsContent">
-
-                        <!-- User Registration Form -->
-                        <div class="tab-pane fade show active" id="userForm" role="tabpanel">
-                            <h4 class="text-center">User Registration</h4>
-                            <form action="register_backend.php" method="POST">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label">First Name</label>
-                                        <input type="text" name="firstName" class="form-control" placeholder="Enter First Name" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Last Name</label>
-                                        <input type="text" name="lastName" class="form-control" placeholder="Enter Last Name" required>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="form-label">Email</label>
-                                        <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="form-label">Confirm Password</label>
-                                        <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password" required>
-                                    </div>
-                                </div>
-                                <button class="btn btn-light-theme w-100 mt-4" type="submit">
-                                    <i class="fa fa-user-plus me-2"></i> Register
-                                </button>
-                            </form>
-                        </div>
-
-                        <!-- Admin Registration Form -->
-                        <div class="tab-pane fade" id="adminForm" role="tabpanel">
-                            <h4 class="text-center">Admin Registration</h4>
-                            <form action="register_backend.php" method="POST">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label">First Name</label>
-                                        <input type="text" name="firstName" class="form-control" placeholder="Enter First Name" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">Last Name</label>
-                                        <input type="text" name="lastName" class="form-control" placeholder="Enter Last Name" required>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="form-label">Email</label>
-                                        <input type="email" name="email" class="form-control" placeholder="Enter Email" required>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" placeholder="Enter Password" required>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="form-label">Confirm Password</label>
-                                        <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password" required>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <label class="form-label">Admin Code</label>
-                                        <input type="password" name="adminCode" class="form-control" placeholder="Enter Admin Code" required>
-                                    </div>
-                                </div>
-                                <button class="btn btn-light-theme w-100 mt-4" type="submit">
-                                    <i class="fa fa-user-shield me-2"></i> Register
-                                </button>
-                            </form>
-                        </div>
-
+                        </form>
                     </div>
 
-                    <hr>
+                    <!-- ADMIN -->
+                    <div class="tab-pane fade" id="adminTab">
+                        
+                        <form onsubmit="registerUser(event, 'admin')">
+                            <input class="form-control mb-2" name="firstName" placeholder="First Name" required>
+                            <input class="form-control mb-2" name="lastName" placeholder="Last Name" required>
+                            <input class="form-control mb-2" type="email" name="email" placeholder="Email" required>
+                            <input class="form-control mb-2" type="password" name="password" placeholder="Password" required>
+                            <input class="form-control mb-2" type="password" name="confirmPassword" placeholder="Confirm Password" required>
+                            <input class="form-control mb-3" name="adminCode" placeholder="Admin Code" required>
 
-                    <div class="text-center">
-                        <span>Already have an account?</span><br>
-                        <a href="login.html">Login Here</a>
+                            <button class="btn btn-theme w-100">
+                                <i class="fa fa-user-shield me-2"></i> Register
+                            </button>
+                        </form>
                     </div>
 
                 </div>
+
+                <hr>
+                <div class="text-center">
+                    Already have an account? <a href="login.html">Login</a>
+                </div>
+
             </div>
         </div>
     </div>
 </div>
 
-<!-- Footer -->
-<div id="footer"></div>
-
-<!-- Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="../../js/main.js"></script>
-
 <script>
 function registerUser(event, role) {
-    event.preventDefault(); // prevent default form submission
+    event.preventDefault();
 
-    // Get form values
-    let form = event.target;
-    let firstName = form.querySelector('[name="firstName"]').value;
-    let lastName = form.querySelector('[name="lastName"]').value;
-    let email = form.querySelector('[name="email"]').value;
-    let password = form.querySelector('[name="password"]').value;
-    let confirmPassword = form.querySelector('[name="confirmPassword"]').value;
+    const form = event.target;
+    const password = form.password.value;
+    const confirm = form.confirmPassword.value;
 
-    if(password !== confirmPassword) {
-        alert("Passwords do not match!");
+    if (password !== confirm) {
+        alert("Passwords do not match");
         return;
     }
 
-    // Optional: admin code check for frontend
-    if(role === 'admin') {
-        let adminCode = form.querySelector('[name="adminCode"]').value;
-        if(adminCode !== "SECRET_ADMIN_CODE") { // replace with your code
-            alert("Invalid Admin Code!");
-            return;
-        }
-    }
+    // if (role === 'admin' && form.adminCode.value !== "SECRET_ADMIN_CODE") {
+    //     alert("Invalid admin code");
+    //     return;
+    // }
 
-    // Send data to backend
-    fetch('/api/auth/register', {
+    fetch('http://localhost:8080/api/auth/register', {
+
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            name: firstName + " " + lastName,
-            email: email,
+            name: form.firstName.value + " " + form.lastName.value,
+            email: form.email.value,
             password: password,
             role: role
         })
     })
-    .then(res => res.json())
-    .then(data => {
-        alert(data.message);
-        if(data.success) {
-            window.location.href = '/login.html';
-        }
-    })
-    .catch(err => console.error(err));
+    .then(r => r.json())
+    .then(d => {
+        alert(d.message);
+        if (d.success) window.location.href = "login.html";
+    });
 }
 </script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
