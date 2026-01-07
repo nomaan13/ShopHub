@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.save(product);
     }
 
-    // Update product    
+    // Update product
     @Override
     public Product updateProduct(Long id, Product product) {
 

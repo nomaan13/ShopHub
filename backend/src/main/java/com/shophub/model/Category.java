@@ -2,7 +2,7 @@ package com.shophub.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import jakarta.persistence.Column; 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,13 +18,13 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(unique = true, nullable = false)
     private String name;
-    
+
     private String description;
-    
-    
+
+
 
 	public Category() {
 		super();
@@ -60,5 +60,5 @@ public class Category {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
 }

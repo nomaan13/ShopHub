@@ -1,16 +1,21 @@
 package com.shophub.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import com.shophub.model.User;
-import com.shophub.service.UserService;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.shophub.model.User;
+import com.shophub.service.UserService;
+
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin("*") // allows frontend JS requests
+@CrossOrigin("*") // allow frontend JS requests
 public class AuthController {
 
     @Autowired
@@ -51,8 +56,7 @@ public class AuthController {
 
             response.put("success", true);
             response.put("message", "Login successful");
-            // redirect URL for frontend
-            response.put("redirectUrl", role.equals("admin") ? "/admin/dashboard.html" : "/user/dashboard.html");
+            response.put("redirectUrl", role.equals("admin") ? "/pages/admin/dashboard.html" : "/pages/user/dashboard.html");
 
         } catch (Exception e) {
             response.put("success", false);
