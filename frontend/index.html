@@ -321,7 +321,34 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
     }
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const loginNav = document.getElementById("loginNav");
+    const logoutNav = document.getElementById("logoutNav");
+
+    // Check if navbar elements exist
+    if (!loginNav || !logoutNav) return;
+
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (isLoggedIn === "true") {
+        loginNav.classList.add("d-none");
+        logoutNav.classList.remove("d-none");
+    } else {
+        loginNav.classList.remove("d-none");
+        logoutNav.classList.add("d-none");
+    }
+});
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "/index.html";
+}
+
+
 </script>
+
 
 
 

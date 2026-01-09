@@ -51,47 +51,50 @@
     </div>
 </div>
 
-<script>
-let role = 'user';
+ <script>
+let role = 'user';       // backend role
+let loginType = 'user'; // frontend role
 
 function setType(type) {
     role = type;
-    userBtn.classList.remove('active');
-    adminBtn.classList.remove('active');
+    loginType = type;
+    document.getElementById('userBtn').classList.remove('active');
+    document.getElementById('adminBtn').classList.remove('active');
     document.getElementById(type + 'Btn').classList.add('active');
 }
 
 function login() {
+    const emailInput = document.getElementById('email').value;
+    const passwordInput = document.getElementById('password').value;
+
     fetch('http://localhost:8080/api/auth/login', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            email: email.value,
-            password: password.value,
+            email: emailInput,
+            password: passwordInput,
             role: role
         })
     })
-    .then(r => r.json())
+    .then(res => res.json())
     .then(d => {
-        if (d.success) 
-        {
-           
-        
-       localStorage.setItem("isLoggedIn", "true");
-        localStorage.setItem("userRole", loginType);
-        localStorage.setItem("userEmail", email);
+        if (d.success) {
 
-        window.location.href = "http://127.0.0.1:5500/index.html";
-        
+            // ✅ SINGLE SOURCE OF TRUTH
+            localStorage.setItem("loggedInUser", JSON.stringify({
+                email: emailInput,
+                role: loginType === 'admin' ? "ROLE_ADMIN" : "ROLE_USER"
+            }));
+
+            window.location.href = "/index.html";
+        } else {
+            alert(d.message);
         }
-
-
-
-
-        else alert(d.message);
-    });
+    })
+    .catch(err => console.error(err));
 }
 </script>
+
 
 </body>
 </html>

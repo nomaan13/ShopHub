@@ -1,4 +1,5 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
     <div class="container">
 
@@ -14,7 +15,7 @@
             <ul class="navbar-nav ms-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/index.html">Home</a>                    
+                    <a class="nav-link" href="/index.html">Home</a>
                 </li>
 
                 <li class="nav-item">
@@ -30,25 +31,32 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/pages/order/my_orders.html">
-                        <i class="fas fa-shopping-cart"></i> Cart
+                    <a class="nav-link" href="/pages/cart/cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCount" class="badge bg-danger ms-1">0</span>
                     </a>
                 </li>
 
-               
-
-                <!-- <li class="nav-item">
-                    <a class="nav-link" href="/pages/auth/login.html"   id="authLink">
-                        <i class="fa-solid fa-user"></i>  
-                    </a>
-                </li> -->
-
-                <li class="nav-item dropdown" id="authNav">
-                    <a class="nav-link" href="/pages/auth/login.html" id="authIcon">
+                <!-- LOGIN -->
+                <li class="nav-item" id="loginNav">
+                    <a class="nav-link" href="/pages/auth/login.html">
                         <i class="fa-solid fa-user"></i>
                     </a>
                 </li>
 
+                <!-- LOGOUT -->
+                <li class="nav-item d-none" id="logoutNav">
+                    <a class="nav-link" href="#" id="logoutBtn">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </li>
+
+                <!-- ADMIN -->
+                <li class="nav-item d-none" id="adminProductsLink">
+                    <a class="nav-link" href="/pages/product/admin_products.html">
+                        <i class="fa-solid fa-gear"></i> Admin Products
+                    </a>
+                </li>
 
             </ul>
         </div>
