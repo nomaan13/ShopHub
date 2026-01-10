@@ -27,6 +27,10 @@ public interface ProductService {
 
     // Search
     List<Product> searchProducts(String keyword);
+    
+	
+	List<Product> getAllProductsForAdmin();
+
 
 
 }

@@ -34,7 +34,8 @@ public class ProductServiceImpl implements ProductService {
     // Get product by ID
     @Override
     public Product getProductById(Long id) {
-        return productRepository.findById(id).orElse(null);
+        return productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
     // Add product
@@ -74,5 +75,12 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> searchProducts(String keyword) {
         return productRepository.findByNameContainingIgnoreCase(keyword);
+ 
     }
+    
+    @Override
+    public List<Product> getAllProductsForAdmin() {
+        return productRepository.findAll();
+    }
+
 }
