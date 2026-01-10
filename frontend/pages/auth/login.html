@@ -77,7 +77,7 @@ function login() {
         })
     })
     .then(res => res.json())
-    .then(d => {
+    .then(d => { 
         if (d.success) {
 
             // ✅ SINGLE SOURCE OF TRUTH
@@ -91,6 +91,7 @@ function login() {
             alert(d.message);
         }
     })
+
     .catch(err => console.error(err));
 }
 </script>

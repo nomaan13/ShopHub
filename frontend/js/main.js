@@ -30,6 +30,7 @@ function getLoggedInUser() {
     }
 }
 
+
 // ================= NAVBAR INIT =================
 function initNavbar() {
 
