@@ -1,0 +1,83 @@
+.contact-section {
+    padding: 60px 0;
+    background: linear-gradient(180deg, #f8f9fa, #eef1f5);
+}
+
+/* Center Form Card */
+.contact-form-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    position: relative;
+}
+
+/* Small top accent line */
+.contact-form-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, #0d6efd, #6f42c1);
+    border-radius: 10px 10px 0 0;
+}
+
+/* Form Inputs */
+.contact-form-card .form-control {
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+}
+
+/* Button */
+.contact-form-card .btn {
+    padding: 10px;
+    font-weight: 600;
+    border-radius: 6px;
+}
+
+
+/* Info Row */
+.contact-info-row {
+    margin-top: 30px;
+}
+
+/* Info Boxes */
+.info-box {
+    height: 110px;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 14px 10px;
+    font-size: 13px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s ease;
+}
+
+.info-box:hover {
+    transform: translateY(-3px);
+}
+
+/* Icon circle */
+.info-box i {
+    font-size: 16px;
+    color: #0d6efd;
+    background: #e7f0ff;
+    padding: 8px;
+    border-radius: 50%;
+    margin-bottom: 6px;
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 6px;
+    color: #0d6efd;
+}
+
+.info-box p {
+    
+    font-weight: 500;
+    margin: 0;
+    text-align: center;
+}
+
+

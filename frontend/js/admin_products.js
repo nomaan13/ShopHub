@@ -17,28 +17,34 @@ function loadProducts() {
             tbody.innerHTML = "";
 
             products.forEach(p => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td>${p.id}</td>
-                        <td>${p.name}</td>
-                        <td>₹${p.price}</td>
-                        <td>${p.category?.name || p.category}</td>
-                        <td>
-                            <button class="btn btn-sm btn-warning me-1"
-                                onclick="editProduct(${p.id})">
-                                <i class="fa fa-edit"></i>
-                            </button>
-                            <button class="btn btn-sm btn-danger"
-                                onclick="deleteProduct(${p.id})">
-                                <i class="fa fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
+                 tbody.innerHTML += `
+                <tr>
+                    <td>${p.id}</td>
+                    <td>${p.name}</td>
+                    <td>₹${p.price}</td>
+                    <td>${p.category}</td>
+                    <td>
+                        <button class="btn btn-sm btn-warning" onclick="editProduct(${p.id})">
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button class="btn btn-sm btn-danger" onclick="deleteProduct(${p.id})">
+                            <i class="fa fa-trash"></i>
+                        </button>
+
+                        <button class="btn btn-sm btn-secondary" onclick="viewProduct(${p.id})">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </td>
+                </tr>
                 `;
             });
         })
         .catch(err => console.error("Load error:", err));
 }
+
+
+
 
 // ================= ADD / UPDATE =================
 function saveProduct() {
