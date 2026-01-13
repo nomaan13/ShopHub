@@ -1,0 +1,20 @@
+body {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    padding: 40px;
+    border-radius: 25px;
+    width: 400px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.toggle button.active {
+    background: #6a11cb;
+    color: #fff;
+}

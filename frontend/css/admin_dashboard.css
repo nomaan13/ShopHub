@@ -1,0 +1,181 @@
+/* =========================
+   GLOBAL PAGE STYLING
+========================= */
+
+body {
+  background-color: #f4f6f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+main {
+  padding-bottom: 40px;
+}
+
+h2 {
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 0.5px;
+}
+
+/* =========================
+   DASHBOARD GRID
+========================= */
+
+.container {
+  max-width: 1200px;
+}
+
+/* =========================
+   CARD BASE STYLING
+========================= */
+
+.dashboard-card,
+.card.shadow-sm {
+  border: none;
+  border-radius: 14px;
+  background-color: #ffffff;
+  transition: all 0.25s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hover Effect */
+.dashboard-card:hover,
+.card.shadow-sm:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   CARD BODY
+========================= */
+
+.dashboard-card .card-body,
+.card.shadow-sm .card-body {
+  padding: 25px 20px;
+  text-align: center;
+}
+
+/* =========================
+   ICON STYLING
+========================= */
+
+.dashboard-card i,
+.card.shadow-sm i {
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+  transition: transform 0.3s ease;
+}
+
+/* Icon animation */
+.dashboard-card:hover i,
+.card.shadow-sm:hover i {
+  transform: scale(1.15);
+}
+
+/* =========================
+   CARD TITLE & TEXT
+========================= */
+
+.dashboard-card h5,
+.card.shadow-sm h5 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #222;
+}
+
+.dashboard-card p,
+.card.shadow-sm p {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 14px;
+}
+
+/* =========================
+   BUTTON STYLING
+========================= */
+
+.dashboard-card .btn,
+.card.shadow-sm .btn {
+  border-radius: 25px;
+  padding: 7px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Button hover */
+.dashboard-card .btn:hover,
+.card.shadow-sm .btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* =========================
+   SECTION SPACING
+========================= */
+
+.row.g-4 {
+  margin-top: 10px;
+}
+
+/* =========================
+   NAVBAR PLACEHOLDER
+========================= */
+
+#navbar {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+
+/* =========================
+   FOOTER PLACEHOLDER
+========================= */
+
+
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 992px) {
+  .dashboard-card,
+  .card.shadow-sm {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .dashboard-card i,
+  .card.shadow-sm i {
+    font-size: 2.1rem;
+  }
+
+  .dashboard-card .card-body,
+  .card.shadow-sm .card-body {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .dashboard-card h5,
+  .card.shadow-sm h5 {
+    font-size: 1rem;
+  }
+
+  .dashboard-card p,
+  .card.shadow-sm p {
+    font-size: 0.85rem;
+  }
+}
