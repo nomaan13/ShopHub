@@ -75,5 +75,47 @@ function renderPagination(totalPages, current) {
   }
 }
 
+
+// async function loadUserProducts() {
+//   const res = await fetch("http://localhost:8080/api/products/all");
+//   const products = await res.json();
+
+//   const container = document.getElementById("productList");
+//   container.innerHTML = "";
+
+//   products.forEach(p => {
+//     container.innerHTML += `
+//       <div class="card">
+//         <img src="${p.imageUrl || 'https://via.placeholder.com/150'}" class="card-img-top" alt="${p.name}">
+//         <div class="card-body">
+//           <h5 class="card-title">${p.name}</h5>
+//           <p class="card-text">₹${p.price.toFixed(2)}</p>
+//           <p class="card-text">${p.description}</p>
+//         </div>
+//       </div>
+//     `;
+//   });
+// }
+
+async function loadUserProducts() {
+  try {
+    const res = await fetch("http://localhost:8080/api/products/all");
+    if (!res.ok) {
+      throw new Error("Failed to fetch products: " + res.status);
+    }
+    const products = await res.json();
+
+    if (!Array.isArray(products)) {
+      throw new Error("Response is not an array");
+    }
+
+    renderProducts(products);
+  } catch (err) {
+    console.error(err);
+    productContainer.innerHTML = "<p class='text-danger'>Failed to load products</p>";
+  }
+}
+
+
 // INITIAL LOAD
 loadProducts();
