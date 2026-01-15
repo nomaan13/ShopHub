@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Confirmation</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e3fdf5, #ffe6fa);
+    }
+
+    .confirmation-box {
+      background: #ffffff;
+      padding: 40px 35px;
+      border-radius: 16px;
+      width: 420px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .icon {
+      font-size: 60px;
+      color: #28a745;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .order-id {
+      background: #f5f7fa;
+      border: 1px dashed #ccc;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    /* ===== Order Timeline ===== */
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 18px;
+      left: 10%;
+      width: 80%;
+      height: 4px;
+      background: #ddd;
+      z-index: 0;
+      border-radius: 2px;
+    }
+
+    .step {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      width: 33%;
+    }
+
+    .step .circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    .step.active .circle {
+      background: linear-gradient(135deg, #28a745, #5cd65c);
+    }
+
+    .step.completed .circle {
+      background: #28a745;
+    }
+
+    .step span {
+      font-size: 12px;
+      color: #555;
+      font-weight: 600;
+    }
+
+    .delivery-date {
+  background: #eef7ff;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+
+    /* ===== Buttons ===== */
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      color: #fff;
+    }
+
+    .shop-btn {
+      background: linear-gradient(135deg, #28a745, #5cd65c);
+      box-shadow: 0 8px 15px rgba(40, 167, 69, 0.3);
+    }
+
+    .track-btn {
+      background: linear-gradient(135deg, #007bff, #5dade2);
+      box-shadow: 0 8px 15px rgba(0, 123, 255, 0.3);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="confirmation-box">
+    <div class="icon">✔️</div>
+
+    <h1>Order Placed Successfully</h1>
+    <p>Your order is confirmed and moving through the process.</p>
+
+    <div class="order-id">
+      <strong>Order ID:</strong> <span id="orderId">ORD-982341</span>
+    </div>
+
+    <div class="delivery-date">
+        <strong>Estimated Delivery:</strong>
+        <span id="deliveryDate"></span>
+    </div>
+
+
+    <!-- Order Status Timeline -->
+    <div class="timeline">
+      <div class="step completed">
+        <div class="circle">✔</div>
+        <span>Placed</span>
+      </div>
+
+      <div class="step active">
+        <div class="circle">🚚</div>
+        <span>Shipped</span>
+      </div>
+
+      <div class="step">
+        <div class="circle">📦</div>
+        <span>Delivered</span>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="btn-group">
+      <a href="/pages/product/product_list.html" class="btn shop-btn">
+        Shop More
+      </a>
+      <a href="/pages/order/track_order.html" class="btn track-btn">
+        Track Order
+      </a>
+    </div>
+  </div>
+
+
+
+  <script>
+  // 🔐 PROTECTION LOGIC (FIXED)
+  const orderPlaced = localStorage.getItem("orderPlaced");
+  const userLoggedIn = localStorage.getItem("userLoggedIn");
+  const adminLoggedIn = localStorage.getItem("adminLoggedIn");
+
+  // ❌ If user tries to open page directly
+  if (!orderPlaced && !userLoggedIn && !adminLoggedIn) {
+    window.location.href = "/pages/auth/login.html";
+  }
+
+  // ✅ Show Order ID
+  const orderId =
+    localStorage.getItem("orderId") ||
+    new URLSearchParams(window.location.search).get("orderId") ||
+    "ORD-XXXXXX";
+
+  document.getElementById("orderId").innerText = orderId;
+
+  // 📦 Estimated delivery (5 days from now)
+  const deliveryDate = new Date();
+  deliveryDate.setDate(deliveryDate.getDate() + 5);
+
+  document.getElementById("deliveryDate").innerText =
+    deliveryDate.toDateString();
+
+  // 🧹 OPTIONAL: clear order flag so refresh doesn't misuse it
+  localStorage.removeItem("orderPlaced");
+</script>
+
+</body>
+</html>

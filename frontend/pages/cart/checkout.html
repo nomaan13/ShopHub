@@ -10,8 +10,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../../css/main.css">
-    
 </head>
+
 <body>
 
 <!-- Navbar -->
@@ -22,144 +22,109 @@
     <h2 class="mb-4">Checkout</h2>
 
     <div class="row">
-        <!-- Address & Payment (Left Side - 8 columns) -->
+        <!-- LEFT SIDE -->
         <div class="col-md-8">
 
-            <!-- Shipping Address Card -->
+            <!-- Shipping Address -->
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="mb-3">
-                        <i class="fas fa-map-marker-alt"></i> Shipping Address
-                    </h5>
+                    <h5 class="mb-3">Shipping Address</h5>
 
                     <form id="addressForm">
                         <div class="row g-3">
+
                             <div class="col-md-6">
                                 <label class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="fullName" placeholder="Enter full name" required>
+                                <input type="text" class="form-control" id="fullName" required>
                                 <small class="text-danger" id="nameError"></small>
                             </div>
 
                             <div class="col-md-6">
-                                <label class="form-label">Mobile Number</label>
-                                <input type="text" class="form-control" id="mobile" placeholder="Enter mobile number" required>
+                                <label class="form-label">Mobile</label>
+                                <input type="text" class="form-control" id="mobile" required>
                                 <small class="text-danger" id="mobileError"></small>
                             </div>
 
                             <div class="col-md-12">
                                 <label class="form-label">Address</label>
-                                <input type="text" class="form-control" id="address" placeholder="House no, Street, Area" required>
+                                <input type="text" class="form-control" id="address" required>
                                 <small class="text-danger" id="addressError"></small>
                             </div>
 
                             <div class="col-md-6">
                                 <label class="form-label">City</label>
-                                <input type="text" class="form-control" id="city" placeholder="Enter city" required>
+                                <input type="text" class="form-control" id="city" required>
                                 <small class="text-danger" id="cityError"></small>
                             </div>
 
                             <div class="col-md-3">
                                 <label class="form-label">State</label>
-                                <input type="text" class="form-control" id="state" placeholder="Enter state" required>
+                                <input type="text" class="form-control" id="state" required>
                                 <small class="text-danger" id="stateError"></small>
                             </div>
 
                             <div class="col-md-3">
                                 <label class="form-label">Pincode</label>
-                                <input type="text" class="form-control" id="pincode" placeholder="6 digits" required>
+                                <input type="text" class="form-control" id="pincode" required>
                                 <small class="text-danger" id="pincodeError"></small>
                             </div>
+
                         </div>
                     </form>
                 </div>
             </div>
 
-            <!-- Payment Method Card -->
+            <!-- Payment -->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="mb-3">
-                        <i class="fas fa-credit-card"></i> Payment Method
-                    </h5>
+                    <h5 class="mb-3">Payment Method</h5>
 
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="payment" id="cod" value="COD" checked>
-                        <label class="form-check-label" for="cod">
-                            <strong>Cash on Delivery</strong>
-                            <p class="text-muted small">Pay when your order arrives</p>
-                        </label>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="payment" value="COD" checked>
+                        <label class="form-check-label">Cash on Delivery</label>
                     </div>
 
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="payment" id="card" value="CARD">
-                        <label class="form-check-label" for="card">
-                            <strong>Credit / Debit Card</strong>
-                            <p class="text-muted small">Secure payment with your card</p>
-                        </label>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="payment" value="CARD">
+                        <label class="form-check-label">Card</label>
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="payment" id="upi" value="UPI">
-                        <label class="form-check-label" for="upi">
-                            <strong>UPI / Net Banking</strong>
-                            <p class="text-muted small">Use your bank account or digital wallet</p>
-                        </label>
+                        <input class="form-check-input" type="radio" name="payment" value="UPI">
+                        <label class="form-check-label">UPI</label>
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <!-- Order Summary (Right Side - 4 columns) -->
+        <!-- RIGHT SIDE -->
         <div class="col-md-4">
             <div class="card sticky-top" style="top: 100px;">
                 <div class="card-body">
-                    <h5 class="mb-3">
-                        <i class="fas fa-receipt"></i> Order Summary
-                    </h5>
+
+                    <h5 class="mb-3">Order Summary</h5>
                     <hr>
 
-                    <!-- Items Summary -->
-                    <div id="cartItems">
-                        <!-- Cart items will be loaded here via JavaScript -->
-                    </div>
+                    <div id="cartItems"></div>
 
-                    <!-- Subtotal -->
-                    <div class="d-flex justify-content-between mb-2">
+                    <div class="d-flex justify-content-between">
                         <span>Subtotal</span>
                         <span id="subtotal">₹0</span>
                     </div>
 
-                    <!-- Discount -->
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Discount</span>
-                        <span class="text-success" id="discount">₹0</span>
-                    </div>
-
-                    <!-- Delivery Charge -->
-                    <div class="d-flex justify-content-between mb-3">
-                        <span>Delivery Charge</span>
-                        <span class="text-success" id="delivery">
-                            <small>FREE</small>
-                        </span>
-                    </div>
-
-                    <hr>
-
-                    <!-- Total -->
-                    <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
-                        <span>Total Payable</span>
+                    <div class="d-flex justify-content-between fw-bold mt-2">
+                        <span>Total</span>
                         <span id="total">₹0</span>
                     </div>
 
-                    <!-- Place Order Button -->
-                    <button class="btn btn-success w-100 btn-lg" id="placeOrderBtn" onclick="placeOrder()">
-                        <i class="fas fa-check-circle"></i> Place Order
+                    <button class="btn btn-success w-100 mt-4" onclick="placeOrder()">
+                        Place Order
                     </button>
 
-                    <!-- Back to Cart Button -->
                     <a href="cart.html" class="btn btn-outline-secondary w-100 mt-2">
-                        <i class="fas fa-arrow-left"></i> Back to Cart
+                        Back to Cart
                     </a>
+
                 </div>
             </div>
         </div>
@@ -170,171 +135,112 @@
 <div id="footer"></div>
 
 <!-- Bootstrap JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-
-<!-- Main JS (loads navbar & footer) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../../js/main.js"></script>
 
-<!-- Checkout JS -->
 <script>
-    // ============================================
-    // 1. LOAD CART ITEMS ON PAGE LOAD
-    // ============================================
-    function loadCartSummary() {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const cartItemsDiv = document.getElementById('cartItems');
-        let subtotal = 0;
+/* ================= LOAD CART ================= */
+function loadCartSummary() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartItems = document.getElementById('cartItems');
+    let subtotal = 0;
 
-        if (cart.length === 0) {
-            cartItemsDiv.innerHTML = '<p class="text-danger">Your cart is empty!</p>';
-            return;
-        }
-
-        cartItemsDiv.innerHTML = ''; // Clear previous items
-
-        cart.forEach(item => {
-            const itemTotal = item.price * item.quantity;
-            subtotal += itemTotal;
-
-            cartItemsDiv.innerHTML += `
-                <div class="d-flex justify-content-between mb-2">
-                    <span>
-                        ${item.name} × ${item.quantity}
-                    </span>
-                    <span>₹${itemTotal.toLocaleString()}</span>
-                </div>
-            `;
-        });
-
-        // Add line break after items
-        cartItemsDiv.innerHTML += '<hr class="my-2">';
-
-        // Update totals
-        updateTotals(subtotal);
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p class="text-danger">Cart is empty</p>';
+        return;
     }
 
-    // ============================================
-    // 2. CALCULATE AND UPDATE TOTALS
-    // ============================================
-    function updateTotals(subtotal) {
-        const discount = 0; // Can add discount logic later
-        const delivery = 0; // Free delivery
-        const total = subtotal - discount + delivery;
-
-        document.getElementById('subtotal').textContent = '₹' + subtotal.toLocaleString();
-        document.getElementById('discount').textContent = '₹' + discount.toLocaleString();
-        document.getElementById('total').textContent = '₹' + total.toLocaleString();
-    }
-
-    // ============================================
-    // 3. VALIDATE FORM INPUTS
-    // ============================================
-    function validateForm() {
-        let isValid = true;
-
-        // Full Name Validation
-        const fullName = document.getElementById('fullName').value.trim();
-        if (fullName.length < 3) {
-            document.getElementById('nameError').textContent = 'Name must be at least 3 characters';
-            isValid = false;
-        } else {
-            document.getElementById('nameError').textContent = '';
-        }
-
-        // Mobile Validation (10 digits)
-        const mobile = document.getElementById('mobile').value.trim();
-        if (!/^\d{10}$/.test(mobile)) {
-            document.getElementById('mobileError').textContent = 'Mobile must be 10 digits';
-            isValid = false;
-        } else {
-            document.getElementById('mobileError').textContent = '';
-        }
-
-        // Address Validation
-        const address = document.getElementById('address').value.trim();
-        if (address.length < 5) {
-            document.getElementById('addressError').textContent = 'Please enter valid address';
-            isValid = false;
-        } else {
-            document.getElementById('addressError').textContent = '';
-        }
-
-        // City Validation
-        const city = document.getElementById('city').value.trim();
-        if (city.length < 2) {
-            document.getElementById('cityError').textContent = 'City is required';
-            isValid = false;
-        } else {
-            document.getElementById('cityError').textContent = '';
-        }
-
-        // State Validation
-        const state = document.getElementById('state').value.trim();
-        if (state.length < 2) {
-            document.getElementById('stateError').textContent = 'State is required';
-            isValid = false;
-        } else {
-            document.getElementById('stateError').textContent = '';
-        }
-
-        // Pincode Validation (6 digits)
-        const pincode = document.getElementById('pincode').value.trim();
-        if (!/^\d{6}$/.test(pincode)) {
-            document.getElementById('pincodeError').textContent = 'Pincode must be 6 digits';
-            isValid = false;
-        } else {
-            document.getElementById('pincodeError').textContent = '';
-        }
-
-        return isValid;
-    }
-
-    // ============================================
-    // 4. PLACE ORDER FUNCTION
-    // ============================================
-    function placeOrder() {
-        // Check if form is valid
-        if (!validateForm()) {
-            alert('Please fix all errors');
-            return;
-        }
-
-        // Get form data
-        const orderData = {
-            fullName: document.getElementById('fullName').value,
-            mobile: document.getElementById('mobile').value,
-            address: document.getElementById('address').value,
-            city: document.getElementById('city').value,
-            state: document.getElementById('state').value,
-            pincode: document.getElementById('pincode').value,
-            paymentMethod: document.querySelector('input[name="payment"]:checked').value,
-            cart: JSON.parse(localStorage.getItem('cart')) || [],
-            orderDate: new Date().toISOString()
-        };
-
-        // Save order to localStorage
-        const orders = JSON.parse(localStorage.getItem('orders')) || [];
-        const orderId = 'ORD' + Date.now();
-        orderData.orderId = orderId;
-        orders.push(orderData);
-        localStorage.setItem('orders', JSON.stringify(orders));
-
-        // Clear cart
-        localStorage.removeItem('cart');
-
-        // Show success message
-        alert('Order placed successfully! Order ID: ' + orderId);
-
-        // Redirect to order confirmation
-        window.location.href = '../order/order-confirmation.html?orderId=' + orderId;
-    }
-
-    // ============================================
-    // 5. LOAD CART WHEN PAGE LOADS
-    // ============================================
-    document.addEventListener('DOMContentLoaded', function() {
-        loadCartSummary();
+    cartItems.innerHTML = '';
+    cart.forEach(item => {
+        const total = item.price * item.quantity;
+        subtotal += total;
+        cartItems.innerHTML += `
+            <div class="d-flex justify-content-between mb-2">
+                <span>${item.name} × ${item.quantity}</span>
+                <span>₹${total}</span>
+            </div>
+        `;
     });
+
+    document.getElementById('subtotal').innerText = '₹' + subtotal;
+    document.getElementById('total').innerText = '₹' + subtotal;
+}
+
+/* ================= VALIDATION ================= */
+function validateForm() {
+    let valid = true;
+
+    if (fullName.value.length < 3) {
+        nameError.innerText = 'Invalid name';
+        valid = false;
+    } else nameError.innerText = '';
+
+    if (!/^\d{10}$/.test(mobile.value)) {
+        mobileError.innerText = 'Invalid mobile';
+        valid = false;
+    } else mobileError.innerText = '';
+
+    if (address.value.length < 5) {
+        addressError.innerText = 'Invalid address';
+        valid = false;
+    } else addressError.innerText = '';
+
+    if (city.value.length < 2) {
+        cityError.innerText = 'Invalid city';
+        valid = false;
+    } else cityError.innerText = '';
+
+    if (state.value.length < 2) {
+        stateError.innerText = 'Invalid state';
+        valid = false;
+    } else stateError.innerText = '';
+
+    if (!/^\d{6}$/.test(pincode.value)) {
+        pincodeError.innerText = 'Invalid pincode';
+        valid = false;
+    } else pincodeError.innerText = '';
+
+    return valid;
+}
+
+/* ================= PLACE ORDER ================= */
+function placeOrder() {
+    if (!validateForm()) {
+        alert("Fix errors first");
+        return;
+    }
+
+    const orderId = "ORD" + Date.now();
+
+    const order = {
+        orderId,
+        name: fullName.value,
+        mobile: mobile.value,
+        address: address.value,
+        city: city.value,
+        state: state.value,
+        pincode: pincode.value,
+        payment: document.querySelector('input[name="payment"]:checked').value,
+        cart: JSON.parse(localStorage.getItem('cart')),
+        date: new Date().toISOString()
+    };
+
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    orders.push(order);
+    localStorage.setItem('orders', JSON.stringify(orders));
+
+    // ✅ IMPORTANT FLAGS
+    localStorage.setItem("orderPlaced", "true");
+    localStorage.setItem("orderId", orderId);
+
+    localStorage.removeItem('cart');
+
+    window.location.href =
+        "../order/order_confirmation.html?orderId=" + orderId;
+}
+
+/* ================= INIT ================= */
+document.addEventListener('DOMContentLoaded', loadCartSummary);
 </script>
 
 </body>

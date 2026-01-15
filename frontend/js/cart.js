@@ -250,3 +250,19 @@ document.head.appendChild(style);
 document.addEventListener('DOMContentLoaded', function() {
     updateCartBadge();
 });
+
+function placeOrder() {
+
+    // OPTIONAL: disable button to prevent double click
+    const btn = document.getElementById("placeOrderBtn");
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Placing Order...';
+
+    // OPTIONAL: If you are calling backend API, do it here
+    // fetch("/api/orders/place", { method: "POST" })
+
+    // Redirect after short delay
+    setTimeout(() => {
+        window.location.href = "order_confirmation.html";
+    }, 1500); // 1.5 seconds delay (looks professional)
+}

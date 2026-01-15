@@ -30,36 +30,39 @@ function loadProducts(page = 0) {
     .catch(err => console.error(err));
 }
 
-function renderProducts(products) {
-  
+function renderProducts(products) {  
   const container = document.getElementById("product_list");
-
   container.innerHTML = "";
-
   if (products.length === 0) {
     container.innerHTML = "<p>No products found</p>";
     return;
   }
 
   products.forEach(p => {
-    container.innerHTML += `
-      <div class="col-md-3 mb-4">
-        <div class="card h-100">
-          <div class="card-body">
-            <h6>${p.name}</h6>
-            <p class="text-muted">${p.category?.name ?? ""}</p>
-            <p class="fw-bold">₹${p.price}</p>
+  container.innerHTML += `
+    <div class="col-md-3 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h6>${p.name}</h6>
+          <p class="text-muted">${p.category?.name ?? ""}</p>
+          <p class="fw-bold">₹${p.price}</p>
 
-            <a href="product_details.html?id=${p.id}"
-               class="btn btn-primary btn-sm">
-               View Details
-            </a>
-          </div>
+          <a href="product_details.html?id=${p.id}"
+             class="btn btn-primary btn-sm">
+             View Details
+          </a>
+          <button class="btn btn-success btn-sm mt-2"
+                  onclick="addToCart(${p.id}, '${p.name}', ${p.price}, '${p.imageUrl || ''}')">
+            Add to Cart
+          </button>
         </div>
       </div>
-    `;
-  });
+    </div>
+  `;
+});
+
 }
+
 
 function renderPagination(totalPages, current) {
   const pagination = document.getElementById("pagination");
@@ -115,6 +118,30 @@ async function loadUserProducts() {
     productContainer.innerHTML = "<p class='text-danger'>Failed to load products</p>";
   }
 }
+
+//addtot cart function
+function addToCart(id, name, price, image) {
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  // Check if product already exists in cart
+  const existingIndex = cart.findIndex(item => item.id === id);
+
+  if (existingIndex > -1) {
+    cart[existingIndex].quantity += 1;
+  } else {
+    cart.push({
+      id,
+      name,
+      price,
+      image,
+      quantity: 1
+    });
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(`${name} added to cart!`);
+}
+
 
 
 // INITIAL LOAD
