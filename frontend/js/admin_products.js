@@ -18,15 +18,31 @@ async function loadProducts() {
 }
 
 // ✅ Load categories for dropdown
+
 async function loadCategories() {
   const res = await fetch("http://localhost:8080/api/categories");
   const categories = await res.json();
 
+  console.log("Raw categories:", categories);
+
   const select = document.getElementById("category");
-  select.innerHTML = categories.map(c =>
-    `<option value="${c.id}">${c.name}</option>`
-  ).join("");
+  select.innerHTML = ""; // 🔥 CLEAR OLD OPTIONS
+
+  const seen = new Set(); // ✅ Track unique IDs
+
+  categories.forEach(c => {
+    if (!seen.has(c.id)) {
+      seen.add(c.id);
+
+      const option = document.createElement("option");
+      option.value = c.id;
+      option.textContent = c.name;
+      select.appendChild(option);
+    }
+  });
 }
+
+
 
 // ✅ Render product table
 function renderTable() {
