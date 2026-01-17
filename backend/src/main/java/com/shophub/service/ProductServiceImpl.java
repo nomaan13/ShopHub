@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Sort;
 
 import com.shophub.model.Product;
 import com.shophub.repository.ProductRepository;
@@ -14,73 +15,79 @@ import com.shophub.repository.ProductRepository;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    private ProductRepository productRepository;
+	@Autowired
+	private ProductRepository productRepository;
 
-    // Get all products (pagination)
-    @Override
-    public Page<Product> getAllProducts(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return productRepository.findAll(pageable);
-    }
+	// Get all products (pagination)
 
-    // Get products by category (pagination)
-    @Override
-    public Page<Product> getProductsByCategory(String categoryName, int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return productRepository.findByCategory_Name(categoryName, pageable);
-    }
+	@Override
+	public Page<Product> getAllProducts(int page, int size) {
+		Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending()); // ✅ newest first
+		return productRepository.findAll(pageable);
+	}
 
-    // Get product by ID
-    @Override
-    public Product getProductById(Long id) {
-        return productRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found"));
-    }
+	// Get products by category (pagination)
+	@Override
+	public Page<Product> getProductsByCategory(String categoryName, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending()); // ✅ newest first
+		return productRepository.findByCategory_Name(categoryName, pageable);
+	}
 
-    // Add product
-    @Override
-    public Product saveProduct(Product product) {
-        return productRepository.save(product);
-    }
+	// Get product by ID
+	@Override
+	public Product getProductById(Long id) {
+		return productRepository.findById(id).orElseThrow(() -> new RuntimeException("Product not found"));
+	}
 
-    // Update product
-    @Override
-    public Product updateProduct(Long id, Product product) {
+	// Add product
+	@Override
+	public Product saveProduct(Product product) {
+		return productRepository.save(product);
+	}
 
-        Product existing = productRepository.findById(id).orElse(null);
+	// Update product
+	@Override
+	public Product updateProduct(Long id, Product product) {
 
-        if (existing == null) {
-            return null;
-        }
+		Product existing = productRepository.findById(id).orElse(null);
 
-        existing.setName(product.getName());
-        existing.setPrice(product.getPrice());
-        existing.setDescription(product.getDescription());
-        existing.setCategory(product.getCategory());
-        existing.setImageUrl(product.getImageUrl());
-        existing.setStock(product.getStock());
+		if (existing == null) {
+			return null;
+		}
 
-        return productRepository.save(existing);
-    }
+		existing.setName(product.getName());
+		existing.setPrice(product.getPrice());
+		existing.setDescription(product.getDescription());
+		existing.setCategory(product.getCategory());
+		existing.setImageUrl(product.getImageUrl());
+		existing.setStock(product.getStock());
 
+		return productRepository.save(existing);
+	}
 
-    // Delete product
-    @Override
-    public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
-    }
+	// Delete product
+	@Override
+	public void deleteProduct(Long id) {
+		productRepository.deleteById(id);
+	}
 
-    // Search products
-    @Override
-    public List<Product> searchProducts(String keyword) {
-        return productRepository.findByNameContainingIgnoreCase(keyword);
- 
-    }
-    
-    @Override
-    public List<Product> getAllProductsForAdmin() {
-        return productRepository.findAll();
-    }
+	// Search products
+	@Override
+	public List<Product> searchProducts(String keyword) {
+		return productRepository.findByNameContainingIgnoreCase(keyword);
+
+	}
+
+	// getAllProductsForAdmin
+	@Override
+	public List<Product> getAllProductsForAdmin() {
+		return productRepository.findAll(Sort.by("id").descending()); // newest first
+	}
+
+	@Override
+	public Page<Product> findByCategory_NameIgnoreCase(String categoryName, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

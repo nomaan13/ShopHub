@@ -11,8 +11,5 @@ import com.shophub.model.Product;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findByCategory_Name(String categoryName, Pageable pageable);
-
-
-
     List<Product> findByNameContainingIgnoreCase(String keyword);
 }

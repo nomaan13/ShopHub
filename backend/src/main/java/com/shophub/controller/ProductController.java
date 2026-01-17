@@ -33,6 +33,13 @@ public class ProductController {
             @RequestParam(defaultValue = "8") int size) {
         return productService.getAllProducts(page, size);
     }
+    
+    //getAllProductsForUsers
+    @GetMapping("/all")
+    public List<Product> getAllProductsForUsers() {
+        return productService.getAllProductsForAdmin(); 
+    }
+
 
     // Get products by category (pagination)
     @GetMapping("/category/{categoryName}")
