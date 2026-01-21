@@ -218,13 +218,13 @@
   <script>
   // 🔐 PROTECTION LOGIC (FIXED)
   const orderPlaced = localStorage.getItem("orderPlaced");
-  const userLoggedIn = localStorage.getItem("userLoggedIn");
+  const loggedInUser = localStorage.getItem("loggedInUser");
   const adminLoggedIn = localStorage.getItem("adminLoggedIn");
-
-  // ❌ If user tries to open page directly
-  if (!orderPlaced && !userLoggedIn && !adminLoggedIn) {
+ // Allow access if order was just placed OR a logged-in user exists
+  if (!orderPlaced && !loggedInUser) {
     window.location.href = "/pages/auth/login.html";
   }
+ 
 
   // ✅ Show Order ID
   const orderId =
@@ -243,7 +243,14 @@
 
   // 🧹 OPTIONAL: clear order flag so refresh doesn't misuse it
   localStorage.removeItem("orderPlaced");
+
+  window.addEventListener("beforeunload", () => {
+  localStorage.removeItem("orderPlaced");
+});
+
 </script>
 
 </body>
 </html>
+
+

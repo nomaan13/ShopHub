@@ -210,33 +210,42 @@ function placeOrder() {
         return;
     }
 
-    const orderId = "ORD" + Date.now();
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    const order = {
-        orderId,
-        name: fullName.value,
-        mobile: mobile.value,
-        address: address.value,
-        city: city.value,
-        state: state.value,
-        pincode: pincode.value,
-        payment: document.querySelector('input[name="payment"]:checked').value,
-        cart: JSON.parse(localStorage.getItem('cart')),
-        date: new Date().toISOString()
+    let totalAmount = 0;
+    cart.forEach(item => {
+        totalAmount += item.price * item.quantity;
+    });
+
+    const orderData = {
+        userName: fullName.value,
+        totalAmount: totalAmount
     };
 
-    const orders = JSON.parse(localStorage.getItem('orders')) || [];
-    orders.push(order);
-    localStorage.setItem('orders', JSON.stringify(orders));
+    fetch("http://localhost:8080/orders/place", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(orderData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        
+        localStorage.setItem("orderPlaced", "true");
+        localStorage.setItem("orderId", data.orderId);
 
-    // ✅ IMPORTANT FLAGS
-    localStorage.setItem("orderPlaced", "true");
-    localStorage.setItem("orderId", orderId);
+        // clear cart
+        localStorage.removeItem("cart");
 
-    localStorage.removeItem('cart');
-
-    window.location.href =
-        "../order/order_confirmation.html?orderId=" + orderId;
+        // redirect
+        window.location.href =
+            "../order/order_confirmation.html?orderId=" + data.orderId;
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Order failed");
+    });
 }
 
 /* ================= INIT ================= */
